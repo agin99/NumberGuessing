@@ -41,4 +41,4 @@ while player_guess != random_number:
 if player_guess == random_number:
     print(f"You win. You guessed {player_guess} in {turns} turns.")
 else:
-    print(f"You lose. You exceeded the maximum of {max_turns} turns exceeded.\nThe correct number was {random_number}.")
+    print(f"You lose. You exceeded the maximum of {max_turns} turns.\nThe correct number was {random_number}.")
