@@ -73,7 +73,6 @@ Break the game into smaller functions, such as:
 > `save_progress()`  
 > `load_progress()`  
 > `display_guess_history()`  
-Use (OOP) principles to make the game reusable and maintainable.  
 
 <u>Packaged & Distributable Version<u>  
 Turn the game into a standalone package.  
