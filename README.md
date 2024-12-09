@@ -12,16 +12,15 @@
 ~~> Easy: Number range (1-10)~~  
 ~~> Medium: Number range (1-100)~~  
 ~~> Hard: Number range (1-1000)~~  
-~~Adjust the number range and attempt limit based on the difficulty level selected.~~  
-
-<u>Guess History<u>  
-Keep track of all guesses made by the player.  
-Print the list of all previous guesses at the end of the game.  
-Warn the player if they try to guess a number they have already guessed before.  
-
-<u>Scoring System<u>  
-Calculate a score based on how quickly the player guesses the number.  
-Display the final score at the end of the game.  
+~~Adjust the number range and attempt limit based on the difficulty level selected.~~   
+~~Keep track of all guesses made by the player.~~  
+~~Print the list of all previous guesses at the end of the game.~~  
+~~Warn the player if they try to guess a number they have already guessed before.~~  
+~~Calculate a score based on how quickly the player guesses the number.~~  
+~~Display the final score at the end of the game.~~  
+~~Save the player's progress (current attempts, current number, and guess history) to a JSON file.~~  
+~~Allow the player to resume their previous game if it exists.~~  
+~~Automatically load saved progress at the start of the game.~~   
 
 <u>Colorful Output<u>  
 Add color to the output for better visuals.  
@@ -31,11 +30,6 @@ Add color to the output for better visuals.
 <u>Add Sound Effects<u>  
 Play a "success" sound if the player guesses correctly.  
 Play an "error" sound for incorrect guesses.  
-
-<u>Save Player Progress<u>  
-Save the player's progress (current attempts, current number, and guess history) to a JSON file.  
-Allow the player to resume their previous game if it exists.  
-Automatically load saved progress at the start of the game.  
 
 <u>Multiplayer (Local Hotseat Version)<u>  
 Allow two players to compete by guessing the number on alternating turns.  

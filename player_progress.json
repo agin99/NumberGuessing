@@ -1,0 +1,62 @@
+{
+    "username": "Player2",
+    "game_active": false,
+    "games": [
+        {
+            "game_info": {
+                "game_config": {
+                    "difficulty": 3,
+                    "random_number": 92
+                },
+                "gameplay": {
+                    "turns": 2,
+                    "guesses": [
+                        10,
+                        92
+                    ],
+                    "guess_temp": [
+                        "Warmer"
+                    ]
+                },
+                "points_earned": 24
+            }
+        },
+        {
+            "game_info": {
+                "game_config": {
+                    "difficulty": 3,
+                    "random_number": 91
+                },
+                "gameplay": {
+                    "turns": 4,
+                    "guesses": [
+                        90,
+                        89,
+                        88,
+                        91
+                    ],
+                    "guess_temp": [
+                        "Colder",
+                        "Colder",
+                        "Warmer"
+                    ]
+                },
+                "points_earned": 18
+            }
+        }
+    ],
+    "game_info": {
+        "game_config": {
+            "difficulty": 0,
+            "random_number": 0
+        },
+        "gameplay": {
+            "turns": 0,
+            "guesses": [],
+            "guess_temp": [],
+            "points_earned": 0
+        }
+    },
+    "games_played": 2,
+    "points": 42
+}
