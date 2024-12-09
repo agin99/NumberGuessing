@@ -43,6 +43,54 @@
                 },
                 "points_earned": 18
             }
+        },
+        {
+            "game_info": {
+                "game_config": {
+                    "difficulty": 3,
+                    "random_number": 114
+                },
+                "gameplay": {
+                    "turns": 1,
+                    "guesses": [
+                        114
+                    ],
+                    "guess_temp": []
+                },
+                "points_earned": 27
+            }
+        },
+        {
+            "game_info": {
+                "game_config": {
+                    "difficulty": 3,
+                    "random_number": 532
+                },
+                "gameplay": {
+                    "turns": 1,
+                    "guesses": [
+                        532
+                    ],
+                    "guess_temp": []
+                },
+                "points_earned": 27
+            }
+        },
+        {
+            "game_info": {
+                "game_config": {
+                    "difficulty": 3,
+                    "random_number": 424
+                },
+                "gameplay": {
+                    "turns": 1,
+                    "guesses": [
+                        424
+                    ],
+                    "guess_temp": []
+                },
+                "points_earned": 27
+            }
         }
     ],
     "game_info": {
@@ -57,6 +105,6 @@
             "points_earned": 0
         }
     },
-    "games_played": 2,
-    "points": 42
+    "games_played": 5,
+    "points": 123
 }

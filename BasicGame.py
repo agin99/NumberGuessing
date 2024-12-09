@@ -72,7 +72,7 @@ def main():
                 player_progress['games_played'] += 1
         if not player_progress['game_active']:
             while True:
-                user_input = input("Choose a difficulty level:\n1. Easy (10)\n2. Medium (100)\n3. Hard (1000)\n\n")
+                user_input = input("Choose a difficulty level:\n1. Easy (10)\n2. \033[93mMedium (100)\033[0m\n3. \033[31mHard (1000)\033[0m\n\n")
                 try:
                     difficulty_choice = int(user_input)
                     if difficulty_choice < 1 or difficulty_choice > 3:
@@ -135,7 +135,7 @@ def main():
         player_progress['games'][games_played]['game_info']['points_earned'] = points_earned
         player_progress['points'] += points_earned
         if player_guess == random_number:
-            print(f"You win. You guessed {player_guess} in {current_gameplay['turns']} turns.")
+            print(f"\033[5mYou win!!\033[0m You guessed {player_guess} in {current_gameplay['turns']} turns.")
         else:
             print(f"You lose. You exceeded the maximum of {max_turns} turns.\nThe correct number was {random_number}.")
         player_progress['game_active'] = False
