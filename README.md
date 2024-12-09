@@ -32,6 +32,8 @@ Play a "success" sound if the player guesses correctly.
 Play an "error" sound for incorrect guesses.  
 
 <u>Multiplayer (Local Hotseat Version)<u>  
+Allow for multiple accounts with username and passwords  
+Require distinct usernames   
 Allow two players to compete by guessing the number on alternating turns.  
 Keep track of which player is guessing and switch turns.  
 Display which player wins if one guesses correctly.  
@@ -40,11 +42,11 @@ Display which player wins if one guesses correctly.
 Allow a player to host the game as a "server" using Python’s socket library.  
 Allow another player to connect as a "client" and play remotely.  
 Send guess information and feedback (too high, too low) between players in real time.  
+High score leaderboard  
 
 <u>Overlay Module<u>  
-Create a small overlay that displays the current task window.  
-The overlay should update dynamically as the user switches tasks (e.g., using the active Discord task schedule).  
-Include an option to adjust the task directly from the overlay.  
+Window overlay that allows the player to toggle between account and game state  
+Dynamically update as the account and game progress  
 
 <u>Comprehensive Logging System<u>  
 Log key events (e.g., player input, attempts, wins, and losses) to a file.  
