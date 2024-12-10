@@ -1,95 +1,18 @@
 {
-    "username": "Player2",
-    "game_active": false,
+    "username": "Player1",
+    "game_active": true,
     "games": [
         {
             "game_info": {
                 "game_config": {
-                    "difficulty": 3,
-                    "random_number": 92
+                    "difficulty": 1,
+                    "random_number": 5
                 },
                 "gameplay": {
-                    "turns": 2,
-                    "guesses": [
-                        10,
-                        92
-                    ],
-                    "guess_temp": [
-                        "Warmer"
-                    ]
-                },
-                "points_earned": 24
-            }
-        },
-        {
-            "game_info": {
-                "game_config": {
-                    "difficulty": 3,
-                    "random_number": 91
-                },
-                "gameplay": {
-                    "turns": 4,
-                    "guesses": [
-                        90,
-                        89,
-                        88,
-                        91
-                    ],
-                    "guess_temp": [
-                        "Colder",
-                        "Colder",
-                        "Warmer"
-                    ]
-                },
-                "points_earned": 18
-            }
-        },
-        {
-            "game_info": {
-                "game_config": {
-                    "difficulty": 3,
-                    "random_number": 114
-                },
-                "gameplay": {
-                    "turns": 1,
-                    "guesses": [
-                        114
-                    ],
+                    "turns": 0,
+                    "guesses": [],
                     "guess_temp": []
-                },
-                "points_earned": 27
-            }
-        },
-        {
-            "game_info": {
-                "game_config": {
-                    "difficulty": 3,
-                    "random_number": 532
-                },
-                "gameplay": {
-                    "turns": 1,
-                    "guesses": [
-                        532
-                    ],
-                    "guess_temp": []
-                },
-                "points_earned": 27
-            }
-        },
-        {
-            "game_info": {
-                "game_config": {
-                    "difficulty": 3,
-                    "random_number": 424
-                },
-                "gameplay": {
-                    "turns": 1,
-                    "guesses": [
-                        424
-                    ],
-                    "guess_temp": []
-                },
-                "points_earned": 27
+                }
             }
         }
     ],
@@ -105,6 +28,6 @@
             "points_earned": 0
         }
     },
-    "games_played": 5,
-    "points": 123
+    "games_played": 0,
+    "points": 0
 }
