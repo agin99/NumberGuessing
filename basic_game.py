@@ -1,5 +1,6 @@
 import random
 import json
+import socket
 
 class RepeatGuess(Exception):
     pass
@@ -16,7 +17,7 @@ def take_yn_input(query_string):
             print("Must choose y or n.")
         
 
-def main():
+def guessing_game():
     game_skeleton = {
         "game_info": {
             "game_config": {
@@ -31,10 +32,29 @@ def main():
         }
     }
 
+    #Listen to player commands
+    client_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    client_socket.connect(('127.0.0.1', 8080))
+    print("Connected to the server at 127.0.0.1:8080")
+    response = client_socket.recv(1024).decode('utf-8')
+    print(f"Player: {response}")
+    if response == 'exit':
+        print("The player has ended the game instance.")
+        client_socket.close()
+        return 0
+    elif not response: 
+        print("The game server has shut off.")
+        client_socket.close()
+        return 0
+    else:
+        print("New game:")
+        return 1
+
     with open('player_progress.json', 'r+') as file:
         player_progress = json.load(file)
         formatted_dict = json.dumps(player_progress, indent=4)
         print(f"Current stats: \n{formatted_dict}")
+
         #Account config
         game_continuation = take_yn_input("Continue on previous account? (y/n)")
         if game_continuation == 'y' and player_progress['games'] != "":
@@ -128,7 +148,6 @@ def main():
             file.seek(0)
             json.dump(player_progress, file, indent=4)
             file.truncate()
-            
 
         player_progress['games_played'] += 1
         points_earned = player_progress['games'][games_played]['game_info']['game_config']['difficulty'] * (max_turns - current_gameplay['turns'])
@@ -143,4 +162,7 @@ def main():
         json.dump(player_progress, file, indent=4)
         file.truncate()
 
-main()
+def main():
+    run_instance = 1
+    while run_instance == 1:
+        run_instance = guessing_game()
