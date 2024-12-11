@@ -1,0 +1,83 @@
+{
+    "players": {
+        "Player1": {
+            "credentials": {
+                "username": "Player1",
+                "password": "HelloWorld"
+            },
+            "game_active": false,
+            "games": [
+                {
+                    "game_info": {
+                        "game_config": {
+                            "difficulty": 3,
+                            "random_number": 7
+                        },
+                        "gameplay": {
+                            "turns": 10,
+                            "guesses": [
+                                10,
+                                11,
+                                12,
+                                15,
+                                45,
+                                90,
+                                135,
+                                180,
+                                225,
+                                270
+                            ],
+                            "guess_temp": [
+                                "Colder",
+                                "Colder",
+                                "Colder",
+                                "Colder",
+                                "Colder",
+                                "Colder",
+                                "Colder",
+                                "Colder"
+                            ]
+                        },
+                        "points_earned": 0
+                    }
+                },
+                {
+                    "game_info": {
+                        "game_config": {
+                            "difficulty": 3,
+                            "random_number": 398
+                        },
+                        "gameplay": {
+                            "turns": 10,
+                            "guesses": [
+                                10,
+                                90,
+                                170,
+                                250,
+                                330,
+                                410,
+                                490,
+                                570,
+                                650,
+                                730
+                            ],
+                            "guess_temp": [
+                                "Warmer",
+                                "Warmer",
+                                "Warmer",
+                                "Warmer",
+                                "Warmer",
+                                "Colder",
+                                "Colder",
+                                "Colder"
+                            ]
+                        },
+                        "points_earned": 0
+                    }
+                }
+            ],
+            "games_played": 2,
+            "points": 0
+        }
+    }
+}

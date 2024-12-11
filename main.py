@@ -1,11 +1,12 @@
 # import basic_game
-import game_server_startup 
+import server 
 import threading
 
 def main():
     IPv4 = '127.0.0.1'
-    port = 8080
-    game_server_thread = threading.Thread(target=game_server_startup.start_server, args=(IPv4, port))
-    game_server_thread.start()
+    player_port = 8080
+    game_port = 8081
+    server_thread = threading.Thread(target=server.start_server, args=(IPv4, player_port, game_port))
+    server_thread.start()
 
 main()
