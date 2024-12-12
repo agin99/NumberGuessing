@@ -93,7 +93,7 @@ def create_game_client(IPv4, player_port, game_port, directory, client_id, game_
     try:
         while True: 
             if not game_client_socket:
-                player_server_socket.send("Create a game client?".encode('utf-8'))
+                player_server_socket.send("Create a game client? (y/n)".encode('utf-8'))
                 msg = player_server_socket.recv(65536).decode('utf-8')
                 if msg == '' or msg == 'exit':
                     print(f"Client {client_id} disconnected.")
