@@ -36,14 +36,7 @@ Dynamically update as the account and game progress
 Log key events (e.g., player input, attempts, wins, and losses) to a file.  
 Include timestamps for every log entry.  
 Implement log levels (`INFO`, `DEBUG`, `ERROR`) using Python's logging module.  
-Write logs to both a file and the console.  
-
-<u>Exception Handling<u>  
-Catch and handle errors like:  
-> ValueError when non-integer input is provided.  
-> FileNotFoundError when trying to load saved progress if the file doesn't exist.  
-> ConnectionError if creating an online version where network issues may occur.  
-Ensure the game doesn’t crash when an exception happens, and display a helpful error message.  
+Write logs to both a file and the console.   
 
 <u>Refactoring for Maintainability<u>  
 Refactor the game logic into a GuessingGame class.  
