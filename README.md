@@ -32,20 +32,15 @@
 Window overlay that allows the player to toggle between account and game state  
 Dynamically update as the account and game progress  
 
-<u>Comprehensive Logging System<u>  
+<u>Logging System<u>  
 Log key events (e.g., player input, attempts, wins, and losses) to a file.  
 Include timestamps for every log entry.  
 Implement log levels (`INFO`, `DEBUG`, `ERROR`) using Python's logging module.  
 Write logs to both a file and the console.   
 
-<u>Refactoring for Maintainability<u>  
-Refactor the game logic into a GuessingGame class.  
-Break the game into smaller functions, such as:  
-> `startgame()`  
-> `processguess()`  
-> `save_progress()`  
-> `load_progress()`  
-> `display_guess_history()`  
+<u>Refactoring<u>  
+Refactor game logic (with OOP)
+Refactor game logic (without OOP)
 
 <u>Packaged & Distributable Version<u>  
 Turn the game into a standalone package.  
