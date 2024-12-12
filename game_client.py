@@ -189,4 +189,8 @@ def configure_game_client(IPv4, port):
     print("Game config complete, starting the game.")
 
     #Run game until player exits (no threading required since its a single player interaction in this case)
-    guessing_game(client_socket, player_progress)
+    while True:
+        game_start_inquiry = take_yn_input(client_socket, "Start new game?\ny to start a new game. \nn to exit.")
+        if game_start_inquiry == 'n':
+            break
+        guessing_game(client_socket, player_progress)
