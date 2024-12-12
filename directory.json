@@ -5,7 +5,7 @@
                 "username": "Player1",
                 "password": "HelloWorld"
             },
-            "game_active": false,
+            "game_active": true,
             "games": [
                 {
                     "game_info": {
@@ -74,10 +74,236 @@
                         },
                         "points_earned": 0
                     }
+                },
+                {
+                    "game_info": {
+                        "game_config": {
+                            "difficulty": 2,
+                            "random_number": 64
+                        },
+                        "gameplay": {
+                            "turns": 9,
+                            "guesses": [
+                                10,
+                                20,
+                                30,
+                                40,
+                                50,
+                                80,
+                                90,
+                                99,
+                                98
+                            ],
+                            "guess_temp": [
+                                "Warmer",
+                                "Warmer",
+                                "Warmer",
+                                "Warmer",
+                                "Colder",
+                                "Colder",
+                                "Colder",
+                                "Warmer"
+                            ]
+                        }
+                    }
+                },
+                {
+                    "game_info": {
+                        "game_config": {
+                            "difficulty": 3,
+                            "random_number": 680
+                        },
+                        "gameplay": {
+                            "turns": 1,
+                            "guesses": [
+                                10
+                            ],
+                            "guess_temp": []
+                        }
+                    }
+                },
+                {
+                    "game_info": {
+                        "game_config": {
+                            "difficulty": 2,
+                            "random_number": 99
+                        },
+                        "gameplay": {
+                            "turns": 0,
+                            "guesses": [],
+                            "guess_temp": []
+                        }
+                    }
+                },
+                {
+                    "game_info": {
+                        "game_config": {
+                            "difficulty": 2,
+                            "random_number": 29
+                        },
+                        "gameplay": {
+                            "turns": 1,
+                            "guesses": [
+                                20
+                            ],
+                            "guess_temp": []
+                        }
+                    }
+                },
+                {
+                    "game_info": {
+                        "game_config": {
+                            "difficulty": 2,
+                            "random_number": 2
+                        },
+                        "gameplay": {
+                            "turns": 1,
+                            "guesses": [
+                                20
+                            ],
+                            "guess_temp": []
+                        }
+                    }
+                },
+                {
+                    "game_info": {
+                        "game_config": {
+                            "difficulty": 2,
+                            "random_number": 82
+                        },
+                        "gameplay": {
+                            "turns": 2,
+                            "guesses": [
+                                10,
+                                28
+                            ],
+                            "guess_temp": [
+                                "Warmer"
+                            ]
+                        },
+                        "points_earned": 16
+                    }
+                },
+                {
+                    "game_info": {
+                        "game_config": {
+                            "difficulty": 2,
+                            "random_number": 28
+                        },
+                        "gameplay": {
+                            "turns": 0,
+                            "guesses": [],
+                            "guess_temp": []
+                        }
+                    }
+                },
+                {
+                    "game_info": {
+                        "game_config": {
+                            "difficulty": 2,
+                            "random_number": 63
+                        },
+                        "gameplay": {
+                            "turns": 0,
+                            "guesses": [],
+                            "guess_temp": []
+                        }
+                    }
+                },
+                {
+                    "game_info": {
+                        "game_config": {
+                            "difficulty": 2,
+                            "random_number": 80
+                        },
+                        "gameplay": {
+                            "turns": 4,
+                            "guesses": [
+                                22,
+                                3,
+                                25,
+                                80
+                            ],
+                            "guess_temp": [
+                                "Colder",
+                                "Warmer",
+                                "Warmer"
+                            ]
+                        },
+                        "points_earned": 12
+                    }
+                },
+                {
+                    "game_info": {
+                        "game_config": {
+                            "difficulty": 2,
+                            "random_number": 79
+                        },
+                        "gameplay": {
+                            "turns": 1,
+                            "guesses": [
+                                10
+                            ],
+                            "guess_temp": []
+                        }
+                    }
+                },
+                {
+                    "game_info": {
+                        "game_config": {
+                            "difficulty": 2,
+                            "random_number": 0
+                        },
+                        "gameplay": {
+                            "turns": 2,
+                            "guesses": [
+                                10,
+                                20
+                            ],
+                            "guess_temp": [
+                                "Warmer"
+                            ]
+                        }
+                    }
+                },
+                {
+                    "game_info": {
+                        "game_config": {
+                            "difficulty": 2,
+                            "random_number": 32
+                        },
+                        "gameplay": {
+                            "turns": 4,
+                            "guesses": [
+                                10,
+                                20,
+                                30,
+                                40
+                            ],
+                            "guess_temp": [
+                                "Warmer",
+                                "Warmer",
+                                "Warmer"
+                            ]
+                        }
+                    }
+                },
+                {
+                    "game_info": {
+                        "game_config": {
+                            "difficulty": 2,
+                            "random_number": 61
+                        },
+                        "gameplay": {
+                            "turns": 0,
+                            "guesses": [],
+                            "guess_temp": []
+                        }
+                    }
                 }
             ],
-            "games_played": 2,
-            "points": 0
+            "games_played": 14,
+            "points": 28
         }
     }
 }

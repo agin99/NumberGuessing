@@ -8,13 +8,13 @@ directory_skeleton = {'players' : {}}
 
 def process_username_choice(client_socket, directory):
         client_socket.send("Username:".encode('utf-8'))
-        client_id = client_socket.recv(4096).decode('utf-8')
+        client_id = client_socket.recv(65536).decode('utf-8')
         while True: 
             try:
                 print('process_username_choice:', directory)
                 if client_id not in directory['players']:
                     client_socket.send(f"Welcome {client_id}, please choose a password.".encode('utf-8'))
-                    password = client_socket.recv(4096).decode('utf-8')
+                    password = client_socket.recv(65536).decode('utf-8')
                     directory['players'][client_id] = {
                         "credentials": {
                             "username": client_id,
@@ -32,7 +32,7 @@ def process_username_choice(client_socket, directory):
                     return client_id
                 else:
                     client_socket.send("Enter your password:".encode('utf-8'))
-                    password_submission = client_socket.recv(4096).decode('utf-8')
+                    password_submission = client_socket.recv(65536).decode('utf-8')
                     if directory['players'][client_id]['credentials']['password'] != password_submission:
                         raise ValueError()
                     return client_id
@@ -43,16 +43,14 @@ def handle_game_client(client_id, directory, player_server_socket, game_server_s
     try: 
         while True:
             #listen for game_client messages
-            game_client_msg = game_server_socket.recv(4096).decode('utf-8')
-            print("Server, handle_game_client (1):", game_client_msg)
+            game_client_msg = game_server_socket.recv(65536).decode('utf-8')
+            # print("Server, handle_game_client (1):", game_client_msg)
             if game_client_msg == '':
                 print(f"Client {client_id} wants to disconnect.")
                 break
             #relay to player_client
             if len(game_client_msg) > 15 and game_client_msg[0:15] == 'player_progress':
-                print(game_client_msg[0:15])
-                print(json.loads(game_client_msg[15:]))
-                updated_player_progress = json.loads(game_client_msg[15:])
+                updated_player_progress = json.loads(game_client_msg[15:].strip())
                 directory['players'][client_id] = updated_player_progress
                 with open('directory.json','r+') as file:
                     file.seek(0)
@@ -60,7 +58,7 @@ def handle_game_client(client_id, directory, player_server_socket, game_server_s
                     file.truncate()
                 game_server_socket.send("Successfully updated".encode("utf-8"))
             else: 
-                print("Server, handle_game_client (2):", game_client_msg)
+                # print("Server, handle_game_client (2):", game_client_msg)
                 player_server_socket.send(game_client_msg.encode('utf-8'))
     except Exception as e:
         print(f"Failed to handle game client because of error: {e}")
@@ -72,7 +70,7 @@ def handle_player_client(client_id, player_server_socket, game_server_socket):
     try: 
         while True:
             #listen for player_client messages
-            player_client_msg = player_server_socket.recv(4096).decode('utf-8')
+            player_client_msg = player_server_socket.recv(65536).decode('utf-8')
             #relay to game_client
             if player_client_msg == '' or player_client_msg == 'exit':
                 print(f"Client {client_id} wants to disconnect.")
@@ -94,27 +92,22 @@ def create_game_client(IPv4, player_port, game_port, directory, client_id, game_
         while True: 
             if not game_client_socket:
                 player_server_socket.send("Create a game client?".encode('utf-8'))
-                msg = player_server_socket.recv(4096).decode('utf-8')
-                print(f"Message in create_game_client:", msg)
+                msg = player_server_socket.recv(65536).decode('utf-8')
                 if msg == '' or msg == 'exit':
                     print(f"Client {client_id} disconnected.")
                     break
                 elif msg == 'y': 
                     #Create game client thread
-                    print("Checkpoint 1.")
                     process = multiprocessing.Process(target=configure_game_client, args=(IPv4, game_port))
                     process.start()
-                    print("Checkpoint 2.")
                     game_client_socket, game_client_address = game_server_socket.accept()
                     player_client_thread = threading.Thread(
                         target=handle_player_client, 
                         args=(client_id, player_server_socket, game_client_socket)
                     )
                     player_client_thread.start()
-                    print("Checkpoint 3.")
                     serialized_player_progress = json.dumps(directory['players'][client_id])
-                    print("Checkpoint 4.")
-                    ready_signal = game_client_socket.recv(1024).decode('utf-8')
+                    ready_signal = game_client_socket.recv(65536).decode('utf-8')
                     if ready_signal == 'READY':
                         print("Game client is ready to receive data")
                     print("Sending player progress data to game client.")
