@@ -5,51 +5,78 @@
                 "username": "Player1",
                 "password": "HelloWorld"
             },
+            "game_active": false,
+            "games": [],
+            "games_played": 0,
+            "points": 0
+        },
+        "Player 1": {
+            "credentials": {
+                "username": "Player 1",
+                "password": "HelloWorld"
+            },
+            "game_active": false,
+            "games": [],
+            "games_played": 0,
+            "points": 0
+        },
+        "Player 3": {
+            "credentials": {
+                "username": "Player 3",
+                "password": "HelloWorld"
+            },
             "game_active": true,
             "games": [
                 {
                     "game_info": {
                         "game_config": {
                             "difficulty": 2,
-                            "random_number": 96
+                            "random_number": 40
                         },
                         "gameplay": {
-                            "turns": 6,
+                            "turns": 2,
                             "guesses": [
-                                91,
-                                92,
-                                93,
-                                94,
-                                95,
-                                96
+                                12,
+                                16
                             ],
                             "guess_temp": [
-                                "Warmer",
-                                "Warmer",
-                                "Warmer",
-                                "Warmer",
                                 "Warmer"
                             ]
-                        },
-                        "points_earned": 8
-                    }
-                },
-                {
-                    "game_info": {
-                        "game_config": {
-                            "difficulty": 3,
-                            "random_number": 132
-                        },
-                        "gameplay": {
-                            "turns": 0,
-                            "guesses": [],
-                            "guess_temp": []
                         }
                     }
                 }
             ],
-            "games_played": 1,
-            "points": 8
+            "games_played": 0,
+            "points": 0
+        },
+        "Player 4": {
+            "credentials": {
+                "username": "Player 4",
+                "password": "HelloWorld"
+            },
+            "game_active": true,
+            "games": [
+                {
+                    "game_info": {
+                        "game_config": {
+                            "difficulty": 3,
+                            "random_number": 950
+                        },
+                        "gameplay": {
+                            "turns": 2,
+                            "guesses": [
+                                15,
+                                17
+                            ],
+                            "guess_temp": [
+                                "Warmer"
+                            ]
+                        }
+                    }
+                }
+            ],
+            "games_played": 0,
+            "points": 0
         }
     }
 }

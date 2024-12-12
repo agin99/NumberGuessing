@@ -64,6 +64,8 @@ def handle_game_client(client_id, directory, player_server_socket, game_server_s
         print(f"Failed to handle game client because of error: {e}")
     finally:
         print("Game client has been shut down.")
+        player_server_socket.close()
+        print("Player client has been shut down.")
     
 
 def handle_player_client(client_id, player_server_socket, game_server_socket):
@@ -97,7 +99,7 @@ def create_game_client(IPv4, player_port, game_port, directory, client_id, game_
                     print(f"Client {client_id} disconnected.")
                     break
                 elif msg == 'y': 
-                    #Create game client thread
+                    #Configure game client thread
                     process = multiprocessing.Process(target=configure_game_client, args=(IPv4, game_port))
                     process.start()
                     game_client_socket, game_client_address = game_server_socket.accept()
@@ -119,6 +121,8 @@ def create_game_client(IPv4, player_port, game_port, directory, client_id, game_
                     game_client_thread.start()
                 elif msg == 'n':
                     player_server_socket.send("Got it. When ready respond y to create a game client or exit to shut down.".encode('utf-8'))
+                elif msg == 'kill_game_client':
+                    process.join()
                 else:
                     raise ValueError()
     except ValueError:

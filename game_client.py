@@ -169,7 +169,7 @@ def configure_game_client(IPv4, port):
     serialized_player_progress = client_socket.recv(4096).decode('utf-8')
     player_progress = json.loads(serialized_player_progress)
     continuation_inquiry_choice = "n"
-    if player_progress:
+    if player_progress['games'] != []:
         #ask player if they want to continue on previous account progress
         query_string = f"You have an existing account, with the following state:\n{player_progress}. \ny to continue. \nn to restart."
         continuation_inquiry_choice = take_yn_input(client_socket, query_string)
@@ -193,3 +193,6 @@ def configure_game_client(IPv4, port):
         if game_start_inquiry == 'n':
             break
         guessing_game(client_socket, player_progress)
+    client_socket.send("Shutting down game client.".encode('utf-8'))
+    client_socket.close()
+    return

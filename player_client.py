@@ -16,7 +16,7 @@ def main():
         #Send messages to game server
         while True:
             data = server_connection_socket.recv(4096)
-            if not data:
+            if not data or data.decode('utf-8') == 'Shutting down game client.':
                 print("Server shutdown.")
                 break
             print(data.decode('utf-8'))
