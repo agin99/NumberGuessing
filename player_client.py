@@ -21,6 +21,8 @@ def main():
                 break
             print(data.decode('utf-8'))
             player_response = input("")
+            while player_response == "":
+                player_response = input("")
             server_connection_socket.send(f"{player_response}".encode('utf-8'))
     except Exception as e:
         print(f"Error occurred: {e}")

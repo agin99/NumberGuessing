@@ -6,9 +6,33 @@
                 "password": "HelloWorld"
             },
             "game_active": false,
-            "games": [],
-            "games_played": 0,
-            "points": 0
+            "games": [
+                {
+                    "game_info": {
+                        "game_config": {
+                            "difficulty": 2,
+                            "random_number": 50
+                        },
+                        "gameplay": {
+                            "turns": 4,
+                            "guesses": [
+                                11,
+                                12,
+                                99,
+                                50
+                            ],
+                            "guess_temp": [
+                                "Warmer",
+                                "Colder",
+                                "Warmer"
+                            ]
+                        },
+                        "points_earned": 12
+                    }
+                }
+            ],
+            "games_played": 1,
+            "points": 12
         },
         "Player 1": {
             "credentials": {
