@@ -2,16 +2,18 @@ import socket
 import threading
 import json
 import multiprocessing
+import time
 from game_client import configure_game_client
 
 directory_skeleton = {'players' : {}}
+stop_event = threading.Event()
+thread_status = {}
 
 def process_username_choice(client_socket, directory):
         client_socket.send("Username:".encode('utf-8'))
         client_id = client_socket.recv(65536).decode('utf-8')
         while True: 
             try:
-                print('process_username_choice:', directory)
                 if client_id not in directory['players']:
                     client_socket.send(f"Welcome {client_id}, please choose a password.".encode('utf-8'))
                     password = client_socket.recv(65536).decode('utf-8')
@@ -44,7 +46,6 @@ def handle_game_client(client_id, directory, player_server_socket, game_server_s
         while True:
             #listen for game_client messages
             game_client_msg = game_server_socket.recv(65536).decode('utf-8')
-            # print("Server, handle_game_client (1):", game_client_msg)
             if game_client_msg == '':
                 print(f"Client {client_id} wants to disconnect.")
                 break
@@ -58,7 +59,6 @@ def handle_game_client(client_id, directory, player_server_socket, game_server_s
                     file.truncate()
                 game_server_socket.send("Successfully updated".encode("utf-8"))
             else: 
-                # print("Server, handle_game_client (2):", game_client_msg)
                 player_server_socket.send(game_client_msg.encode('utf-8'))
     except Exception as e:
         print(f"Failed to handle game client because of error: {e}")
@@ -66,7 +66,7 @@ def handle_game_client(client_id, directory, player_server_socket, game_server_s
         print("Game client has been shut down.")
         player_server_socket.close()
         print("Player client has been shut down.")
-    
+        thread_status['handle_game_client'] = False
 
 def handle_player_client(client_id, player_server_socket, game_server_socket):
     try: 
@@ -83,15 +83,19 @@ def handle_player_client(client_id, player_server_socket, game_server_socket):
     finally:
         game_server_socket.close()
         print(f"Connection to game client closed.")
-        player_server_socket.close()
-        print(f"Connection to {client_id} closed.")
+        if not player_server_socket._closed:
+            player_server_socket.close()
+            print(f"Connection to {client_id} closed.")
+        else:
+            print(f"Connection to {client_id} already closed.")
+        thread_status['handle_player_client'] = False
 
 def create_game_client(IPv4, player_port, game_port, directory, client_id, game_server_socket, player_server_socket, client_address):
     print(f"Connected to {client_address}")
     #Handle player client request for game client
     game_client_socket = None
     try:
-        while True: 
+        while True:
             if not game_client_socket:
                 player_server_socket.send("Create a game client? (y/n)".encode('utf-8'))
                 msg = player_server_socket.recv(65536).decode('utf-8')
@@ -107,6 +111,7 @@ def create_game_client(IPv4, player_port, game_port, directory, client_id, game_
                         target=handle_player_client, 
                         args=(client_id, player_server_socket, game_client_socket)
                     )
+                    thread_status['handle_player_client'] = True
                     player_client_thread.start()
                     serialized_player_progress = json.dumps(directory['players'][client_id])
                     ready_signal = game_client_socket.recv(65536).decode('utf-8')
@@ -118,15 +123,14 @@ def create_game_client(IPv4, player_port, game_port, directory, client_id, game_
                         target=handle_game_client, 
                         args=(client_id, directory, player_server_socket, game_client_socket)
                     )
+                    thread_status['handle_game_client'] = True
                     game_client_thread.start()
                 elif msg == 'n':
                     player_server_socket.send("Got it. When ready respond y to create a game client or exit to shut down.".encode('utf-8'))
-                elif msg == 'kill_game_client':
-                    process.join()
                 else:
                     raise ValueError()
     except ValueError:
-        client_socket.send(
+        player_server_socket.send(
         f"""The allowed choices are: 
         1. y to create a game client.
         2. n to keep the account open.
@@ -142,11 +146,13 @@ def create_game_client(IPv4, player_port, game_port, directory, client_id, game_
         else: 
             print(f"No game client to close for {client_id}")
         try:
-            if not client_socket._closed:
-                client_socket.close()
+            if not player_server_socket._closed:
+                player_server_socket.close()
                 print(f"Connection to player client {client_address} closed.")
         except Exception as e:
             print(f"Failed to disconnect player client properly: {e}")
+        finally:
+            thread_status['create_game_client'] = False
 
 def start_server(IPv4, player_port, game_port):
     #Start server
@@ -158,6 +164,7 @@ def start_server(IPv4, player_port, game_port):
     player_server_socket.bind((IPv4, player_port))
     player_server_socket.listen(3)
     print(f"Listening for player client connections on {IPv4}:{player_port}...")
+    client_socket_dict = {}
     with open('directory.json', 'r') as file:
         directory = json.load(file)
     try:
@@ -166,17 +173,19 @@ def start_server(IPv4, player_port, game_port):
             #Connect new player client to server 
             client_socket, client_address = player_server_socket.accept()
             client_id = process_username_choice(client_socket, directory)
+            client_socket_dict[client_id] = client_socket
             create_game_client_thread = threading.Thread(
                 target=create_game_client, 
                 args=(IPv4, player_port, game_port, directory, client_id, game_server_socket, client_socket, client_address)
             )
+            thread_status['create_game_client'] = True
             create_game_client_thread.start()
     except KeyboardInterrupt:
         print("\nServer shutting down...")  
     finally:
-        for client in directory:
-            client_socket = socket.connect(client['clients']['IPv4'], client['clients']['port'])
-            client_socket.close()
-            del client
+        for key, value in client_socket_dict:
+            if not value._closed:
+                print(f"Shutting connection to {key}.")
+                value.close()
         server_socket.close()
         print("Server fully shut down.")

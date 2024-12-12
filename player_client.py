@@ -31,5 +31,6 @@ def main():
             print("Successfully disconnected.")
         except Exception as e:
             print(f"Failed to close the connection between the player client and the server properly:\n{e}")
+    return
 
 main()
