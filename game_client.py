@@ -27,10 +27,7 @@ def take_yn_input(server_client, query_string):
         except ValueError:
             server_client.send(f"{receiver},Must choose y or n.".encode('utf-8'))
 
-def create_new_player(username, password):
-    player_progress = {}
-    player_progress[username]['username'] = username
-    player_progress[username]['password'] = password
+def reset_player_progress(player_progress):
     player_progress['game_active'] = False
     player_progress['games'] = []
     player_progress['games_played'] = 0
@@ -176,10 +173,12 @@ def configure_game_client(IPv4, port):
         #ask player if they want to continue on previous account progress
         query_string = f"You have an existing account, with the following state:\n{player_progress}. \ny to continue. \nn to restart."
         continuation_inquiry_choice = take_yn_input(client_socket, query_string)
+        print(f"configure_game_client::continuation_inquiry_choice: {continuation_inquiry_choice}")
 
     #create or resume account
+    print(f"configure_game_client::player_progress: {player_progress}")
     if continuation_inquiry_choice != 'y':
-        player_progress = create_new_player(player_progress['credentials']['username'], player_progress['credentials']['password'])
+        player_progress = reset_player_progress(player_progress)
     
     #update central JSON
     serialized_player_progress = json.dumps(player_progress)
